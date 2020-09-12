@@ -1,13 +1,17 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Link from '@material-ui/core/Link';
 
 import * as firebase from "firebase/app";
 import "firebase/analytics";
 import "firebase/auth";
 import "firebase/firestore";
+
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import Link from '@material-ui/core/Link';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+import CouncilTable from './CouncilTable';
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6dvLJF9WgJ1JuA_i5CTLWKMy7TUetNvI",
@@ -49,8 +53,10 @@ export default function App() {
         querySnapshot.forEach((doc) => {
           allCouncils.push(doc.data());
         });
+        allCouncils.sort(function (left, right) {
+          return left.Council.localeCompare(right.Council);
+        });
         setCouncils(allCouncils);
-        console.log(allCouncils);
         setLoading(false);
       });
     }
@@ -59,11 +65,14 @@ export default function App() {
   );
 
   return (
-    <Container maxWidth="sm">
+    <Container>
       <Box my={4}>
         <Typography variant="h4" component="h1" gutterBottom>
           Recycling in New Zealand
-        </Typography>        
+        </Typography>
+        {loading && <CircularProgress />}
+        {!loading &&
+          <CouncilTable councils={councils} />}
         <Copyright />
       </Box>
     </Container>

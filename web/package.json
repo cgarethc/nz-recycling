@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
     "clsx": "latest",
     "firebase": "^7.20.0",
+    "material-table": "^1.69.0",
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest"
