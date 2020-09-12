@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Typography from '@material-ui/core/Typography';
-import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import HouseIcon from '@material-ui/icons/House';
-import StoreIcon from '@material-ui/icons/Store';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import LocalShippingIcon from '@material-ui/icons/LocalShipping';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import MaterialTable from "material-table";
 import { forwardRef } from 'react';
@@ -48,25 +48,25 @@ const tableIcons = {
 export default function CouncilTable(props) {
 
   const councils = props.councils;
-  const loaded = councils && (councils.length > 0);
 
-  const councilRender = rowData => <Typography>{rowData['Council']}<a href={rowData['Recycling info']} target="_blank" rel="noopener noreferrer"><OpenInBrowserIcon color="primary" fontSize="small" /></a></Typography>;
+  const councilRender = rowData => <Typography color="textPrimary"><a href={rowData['Recycling info']} target="_blank" rel="noopener noreferrer">{rowData['Council']}</a></Typography>;
+  
   const createCollectionRender = (field) => {
     return rowData => {
       const fieldValue = rowData[field];
       let icon;
       if (fieldValue.startsWith('K')) {
-        icon = <HouseIcon />;
+        icon = <Tooltip title="Kerbside pickup" aria-label="kerbside pickup"><HouseIcon /></Tooltip>;
       }
       else if (fieldValue.startsWith('D')) {
-        icon = <StoreIcon color='secondary' />
+        icon = <Tooltip title="Drop off at collection point" aria-label="drop off"><LocalShippingIcon color='secondary' /></Tooltip>;
       }
       else {
-        icon = <NotInterestedIcon color='error'/>;
+        icon = <Tooltip title="Not recycled" aria-label="not recycled"><NotInterestedIcon color='error'/></Tooltip>;
       }
 
       if(fieldValue.endsWith('$')){
-        icon = <>{icon}<MonetizationOnIcon color='error'/></>;
+        icon = <>{icon}<Tooltip title="Charges apply" aria-label="charges apply"><MonetizationOnIcon color='error'/></Tooltip></>;
       }
 
       return icon;
@@ -98,7 +98,11 @@ export default function CouncilTable(props) {
     icons={tableIcons}
     options={{
       pageSize: 70,
-      pageSizeOptions: [5, 10, 30, 70]
+      pageSizeOptions: [5, 10, 30, 70],
+      fixedColumns: {
+        left: 1, 
+        right: 0
+      }
     }}
   />);
 }
