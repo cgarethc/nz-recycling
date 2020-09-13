@@ -6,6 +6,7 @@ import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import Tooltip from '@material-ui/core/Tooltip';
+import CheckIcon from '@material-ui/icons/Check';
 
 import MaterialTable from "material-table";
 import { forwardRef } from 'react';
@@ -50,25 +51,39 @@ export default function CouncilTable(props) {
   const councils = props.councils;
 
   const councilRender = rowData => <Typography color="textPrimary"><a href={rowData['Recycling info']} target="_blank" rel="noopener noreferrer">{rowData['Council']}</a></Typography>;
-  
+
   const createCollectionRender = (field) => {
     return rowData => {
       const fieldValue = rowData[field];
       let icon;
       if (fieldValue.startsWith('K')) {
-        icon = <Tooltip title="Kerbside pickup" aria-label="kerbside pickup"><HouseIcon /></Tooltip>;
+        icon = <Tooltip title={`${field} kerbside pickup`} aria-label="kerbside pickup"><HouseIcon /></Tooltip>;
       }
       else if (fieldValue.startsWith('D')) {
-        icon = <Tooltip title="Drop off at collection point" aria-label="drop off"><LocalShippingIcon color='secondary' /></Tooltip>;
+        icon = <Tooltip title={`Drop off ${field} at collection point`} aria-label="drop off"><LocalShippingIcon color='secondary' /></Tooltip>;
       }
       else {
-        icon = <Tooltip title="Not recycled" aria-label="not recycled"><NotInterestedIcon color='error'/></Tooltip>;
+        icon = <Tooltip title={`${field} not recycled`} aria-label="not recycled"><NotInterestedIcon color='error' /></Tooltip>;
       }
 
-      if(fieldValue.endsWith('$')){
-        icon = <>{icon}<Tooltip title="Charges apply" aria-label="charges apply"><MonetizationOnIcon color='error'/></Tooltip></>;
+      if (fieldValue.endsWith('$')) {
+        icon = <>{icon}<Tooltip title="Charges apply" aria-label="charges apply"><MonetizationOnIcon color='error' /></Tooltip></>;
       }
 
+      return icon;
+    };
+  };
+
+  const createYesNoRender = (field) => {
+    return rowData => {
+      const fieldValue = rowData[field];
+      let icon;
+      if (fieldValue === 'Y') {
+        icon = <Tooltip title="Yes" aria-label="yes"><CheckIcon /></Tooltip>;
+      }
+      else {
+        icon = <Tooltip title="No" aria-label="no"><NotInterestedIcon color='error' /></Tooltip>;
+      }
       return icon;
     };
   };
@@ -77,9 +92,9 @@ export default function CouncilTable(props) {
     columns={[
       {
         title: "Council", field: "Council",
-        render: councilRender
+        render: councilRender,
+        width: 300
       },
-      { title: "Area", field: "Area" },
       {
         title: 'Paper', field: 'Paper', render: createCollectionRender('Paper')
       },
@@ -91,18 +106,52 @@ export default function CouncilTable(props) {
       },
       {
         title: 'Glass', field: 'Glass', render: createCollectionRender('Glass')
-      }
+      },
+      {
+        title: 'Plastics 1&2', field: 'Plastics 1&2', render: createCollectionRender('Plastics 1&2')
+      },
+      {
+        title: 'Plastics 5', field: 'Plastics 5', render: createCollectionRender('Plastics 5')
+      },
+      {
+        title: 'Plastics 3', field: 'Plastics 3 V', render: createCollectionRender('Plastics 3 V')
+      },
+      {
+        title: 'Plastics 4', field: 'Plastics 4 LDPE', render: createCollectionRender('Plastics 4 LDPE')
+      },
+      {
+        title: 'Expanded polystyrene', field: 'Plastics 6 EPS', render: createCollectionRender('Plastics 6 EPS')
+      },
+      {
+        title: 'Plastics 6', field: 'Plastics 6 PS', render: createCollectionRender('Plastics 6 PS')
+      },
+      {
+        title: 'Plastics 7', field: 'Plastics 7 Other', render: createCollectionRender('Plastics 7 Other')
+      },
+      {
+        title: 'Tetra Pak', field: 'Tetra Pak', render: createCollectionRender('Tetra Pak')
+      },
+      {
+        title: 'Green waste', field: 'Green waste', render: createCollectionRender('Green waste')
+      },
+      {
+        title: 'Food scraps', field: 'Food scraps', render: createCollectionRender('Food scraps')
+      },
+      {
+        title: 'Lids', field: 'Lids', render: createYesNoRender('Lids')
+      },
     ]}
     data={councils}
     title="Councils"
     icons={tableIcons}
     options={{
-      pageSize: 70,
-      pageSizeOptions: [5, 10, 30, 70],
+      pageSize: 67,
+      pageSizeOptions: [5, 10, 30, 67],
       fixedColumns: {
-        left: 1, 
+        left: 1,
         right: 0
-      }
+      },
+      tableLayout: 'fixed'
     }}
   />);
 }

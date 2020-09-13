@@ -70,9 +70,12 @@ export default function App() {
         <Typography variant="h4" component="h1" gutterBottom>
           Recycling in New Zealand
         </Typography>
-        {loading && <CircularProgress />}
-        {!loading &&
-          <CouncilTable councils={councils} />}
+        <Box>
+          {loading && <CircularProgress />}
+          {!loading &&
+            <CouncilTable councils={councils} />}
+
+        </Box>
         <Copyright />
       </Box>
     </Container>
