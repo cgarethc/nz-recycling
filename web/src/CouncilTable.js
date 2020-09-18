@@ -88,57 +88,82 @@ export default function CouncilTable(props) {
     };
   };
 
+  const columnStyle = {
+    
+  };
+
+  const headerStyle = {
+    transform: 'rotate(90deg)',
+    border: 'none'
+  };
+
   return (<MaterialTable
     columns={[
       {
-        title: "Council", field: "Council",
+        field: "Council",
         render: councilRender,
-        width: 300
+        width: 300,
+        cellStyle: {fontSize: '8pt'}
       },
       {
-        title: 'Paper', field: 'Paper', render: createCollectionRender('Paper')
+        title: 'Paper', field: 'Paper', render: createCollectionRender('Paper'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Cardboard', field: 'Cardboard', render: createCollectionRender('Cardboard')
+        title: 'Cardboard', field: 'Cardboard', render: createCollectionRender('Cardboard'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Cans/Tins', field: 'Cans/Tins', render: createCollectionRender('Cans/Tins')
+        title: 'Cans/Tins', field: 'Cans/Tins', render: createCollectionRender('Cans/Tins'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Glass', field: 'Glass', render: createCollectionRender('Glass')
+        title: 'Glass', field: 'Glass', render: createCollectionRender('Glass'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Plastics 1&2', field: 'Plastics 1&2', render: createCollectionRender('Plastics 1&2')
+        title: 'Plastics 1&2', field: 'Plastics 1&2', render: createCollectionRender('Plastics 1&2'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Plastics 5', field: 'Plastics 5', render: createCollectionRender('Plastics 5')
+        title: 'Plastics 5', field: 'Plastics 5', render: createCollectionRender('Plastics 5'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Plastics 3', field: 'Plastics 3 V', render: createCollectionRender('Plastics 3 V')
+        title: 'Plastics 3', field: 'Plastics 3 V', render: createCollectionRender('Plastics 3 V'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Plastics 4', field: 'Plastics 4 LDPE', render: createCollectionRender('Plastics 4 LDPE')
+        title: 'Plastics 4', field: 'Plastics 4 LDPE', render: createCollectionRender('Plastics 4 LDPE'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Expanded polystyrene', field: 'Plastics 6 EPS', render: createCollectionRender('Plastics 6 EPS')
+        title: 'Expanded polystyrene', field: 'Plastics 6 EPS', render: createCollectionRender('Plastics 6 EPS'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Plastics 6', field: 'Plastics 6 PS', render: createCollectionRender('Plastics 6 PS')
+        title: 'Plastics 6', field: 'Plastics 6 PS', render: createCollectionRender('Plastics 6 PS'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Plastics 7', field: 'Plastics 7 Other', render: createCollectionRender('Plastics 7 Other')
+        title: 'Plastics 7', field: 'Plastics 7 Other', render: createCollectionRender('Plastics 7 Other'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Tetra Pak', field: 'Tetra Pak', render: createCollectionRender('Tetra Pak')
+        title: 'Tetra Pak', field: 'Tetra Pak', render: createCollectionRender('Tetra Pak'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Green waste', field: 'Green waste', render: createCollectionRender('Green waste')
+        title: 'Green waste', field: 'Green waste', render: createCollectionRender('Green waste'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Food scraps', field: 'Food scraps', render: createCollectionRender('Food scraps')
+        title: 'Food scraps', field: 'Food scraps', render: createCollectionRender('Food scraps'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
       {
-        title: 'Lids', field: 'Lids', render: createYesNoRender('Lids')
+        title: 'Lids', field: 'Lids', render: createYesNoRender('Lids'),
+        cellStyle: columnStyle, headerStyle: headerStyle
       },
     ]}
     data={councils}
