@@ -10,8 +10,10 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Link from '@material-ui/core/Link';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { createMuiTheme, responsiveFontSizes, ThemeProvider } from '@material-ui/core/styles';
 
 import CouncilTable from './CouncilTable';
+import CouncilCard from './CouncilCard';
 
 const firebaseConfig = {
   apiKey: "AIzaSyD6dvLJF9WgJ1JuA_i5CTLWKMy7TUetNvI",
@@ -26,6 +28,13 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
+const theme = createMuiTheme({
+  typography: {
+    htmlFontSize: 18,
+  },
+});
+responsiveFontSizes(theme);
 
 function Copyright() {
   return (
@@ -65,19 +74,23 @@ export default function App() {
   );
 
   return (
-    <Container>
-      <Box my={4}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Recycling in New Zealand
+    <ThemeProvider theme={theme}>
+      <Container>
+        <Box my={4}>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Recycling in New Zealand
         </Typography>
-        <Box>
-          {loading && <CircularProgress />}
-          {!loading &&
-            <CouncilTable councils={councils} />}
+          <Box>
+            {loading && <CircularProgress />}
+            {/* {!loading &&
+            <CouncilTable councils={councils} />} */}
+            {!loading && councils.length > 0 &&
+              <CouncilCard council={councils[0]} />}
 
+          </Box>
+          <Copyright />
         </Box>
-        <Copyright />
-      </Box>
-    </Container>
+      </Container>
+    </ThemeProvider>
   );
 }

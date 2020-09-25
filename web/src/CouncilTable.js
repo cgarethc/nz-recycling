@@ -79,10 +79,10 @@ export default function CouncilTable(props) {
       const fieldValue = rowData[field];
       let icon;
       if (fieldValue === 'Y') {
-        icon = <Tooltip title="Yes" aria-label="yes"><CheckIcon /></Tooltip>;
+        icon = <Tooltip title={`${field} yes`} aria-label="yes"><CheckIcon /></Tooltip>;
       }
       else {
-        icon = <Tooltip title="No" aria-label="no"><NotInterestedIcon color='error' /></Tooltip>;
+        icon = <Tooltip title={`${field} no`} aria-label="no"><NotInterestedIcon color='error' /></Tooltip>;
       }
       return icon;
     };
