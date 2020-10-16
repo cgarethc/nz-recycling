@@ -13,10 +13,10 @@
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
     "clsx": "latest",
-    "firebase": "^7.21.0",
-    "material-table": "^1.69.0",
-    "react": "latest",
-    "react-dom": "latest",
+    "firebase": "^7.24.0",
+    "material-table": "^1.69.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-scripts": "latest"
   },
   "browserslist": {

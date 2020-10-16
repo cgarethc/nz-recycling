@@ -31,7 +31,7 @@ const db = firebase.firestore();
 
 const theme = createMuiTheme({
   typography: {
-    htmlFontSize: 18,
+    htmlFontSize:20,
   },
 });
 responsiveFontSizes(theme);
@@ -82,10 +82,11 @@ export default function App() {
         </Typography>
           <Box>
             {loading && <CircularProgress />}
-            {/* {!loading &&
-            <CouncilTable councils={councils} />} */}
-            {!loading && councils.length > 0 &&
-              <CouncilCard council={councils[0]} />}
+            {!loading &&
+            <CouncilTable councils={councils} />}
+            {/* {!loading && councils.length > 0 &&
+              <><Typography>Ashburton</Typography><CouncilCard council={councils[0]} />
+              <Typography>Auckland</Typography><CouncilCard council={councils[1]} /></>} */}
 
           </Box>
           <Copyright />

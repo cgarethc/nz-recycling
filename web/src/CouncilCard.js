@@ -15,8 +15,6 @@ export default function CouncilCard(props) {
 
   const council = props.council;
 
-  const councilRender = () => <Typography color="textPrimary"><a href={council['Recycling info']} target="_blank" rel="noopener noreferrer">{council['Council']}</a></Typography>;
-
   const createCollectionRender = (field) => {
 
     const fieldValue = council[field];
@@ -59,10 +57,14 @@ export default function CouncilCard(props) {
       flexGrow: 1,
     },
     paper: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(1),
       textAlign: 'center',
       color: theme.palette.text.secondary,
+      square: true      
     },
+    innerGrid: {
+      spacing: 1
+    }
   }));
 
 
@@ -71,88 +73,45 @@ export default function CouncilCard(props) {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-            <Grid container spacing={3}>
+            <Grid container className={classes.innerGrid}>
               <Grid item xs={4}>
-                <Paper className={classes.paper}>
+                <div>
                   <Typography>Paper</Typography>
                   {createCollectionRender('Paper')}
-                </Paper>
+                </div>
               </Grid>
               <Grid item xs={4}>
-                <Paper className={classes.paper}>
+                <div>
                   <Typography>Cardboard</Typography>
                   {createCollectionRender('Cardboard')}
-                </Paper>
+                </div>
               </Grid>
               <Grid item xs={4}>
-                <Paper className={classes.paper}>
+                <div>
                   <Typography>Tetra Pak</Typography>
                   {createCollectionRender('Tetra Pak')}
-                </Paper>
+                </div>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
-            <Grid container spacing={3}>
+            <Grid container className={classes.innerGrid}>
               <Grid item xs={6}>
-                <Paper className={classes.paper}>
+                <div>
                   <Typography>Glass</Typography>
                   {createCollectionRender('Glass')}
-                </Paper>
+                </div>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paper}>
+                <div>
                   <Typography>Cans/Tins</Typography>
                   {createCollectionRender('Cans/Tins')}
-                </Paper>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-        
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>
-            <Grid container spacing={3}>
-              <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                  <Typography>Plastics 1 &amp; 2</Typography>
-                  {createCollectionRender('Plastics 1&2')}
-                </Paper>
-              </Grid>
-              <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                  <Typography>Plastics 5</Typography>
-                  {createCollectionRender('Plastics 5')}
-                </Paper>
-              </Grid>
-              <Grid item xs={4}>
-                <Paper className={classes.paper} square={true}>
-                  <Typography>Lids</Typography>
-                  {createYesNoRender('Lids')}
-                </Paper>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Grid>
-        <Grid item xs={4}>
-          <Paper className={classes.paper}>
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <Paper className={classes.paper}>
-                  <Typography>Garden Waste</Typography>
-                  {createCollectionRender('Green waste')}
-                </Paper>
-              </Grid>
-              <Grid item xs={6}>
-                <Paper className={classes.paper}>
-                  <Typography>Food Scraps</Typography>
-                  {createCollectionRender('Food scraps')}
-                </Paper>
+                </div>
               </Grid>
             </Grid>
           </Paper>
@@ -160,46 +119,96 @@ export default function CouncilCard(props) {
 
         <Grid item xs={6}>
           <Paper className={classes.paper}>
-            <Grid container spacing={3}>
+            <Grid container className={classes.innerGrid}>
               <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                  <Typography>Plastics 4</Typography>
-                  {createCollectionRender('Plastics 4 LDPE')}
-                </Paper>
+                <div>
+                  <Typography>Plastics 1 &amp; 2</Typography>
+                  {createCollectionRender('Plastics 1&2')}
+                </div>
               </Grid>
               <Grid item xs={4}>
-                <Paper className={classes.paper}>
-                  <Typography>Plastics 6</Typography>
-                  {createCollectionRender('Plastics 6 PS')}
-                </Paper>
+                <div>
+                  <Typography>Plastics 5</Typography>
+                  {createCollectionRender('Plastics 5')}
+                </div>
               </Grid>
               <Grid item xs={4}>
-                <Paper className={classes.paper} square={true}>
-                  <Typography>Plastics 7</Typography>
-                  {createCollectionRender('Plastics 7 Other')}
-                </Paper>
+                <div>
+                  <Typography>Lids</Typography>
+                  {createYesNoRender('Lids')}
+                </div>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
         <Grid item xs={4}>
           <Paper className={classes.paper}>
-            <Grid container spacing={3}>
+            <Grid container className={classes.innerGrid}>
               <Grid item xs={6}>
-                <Paper className={classes.paper}>
-                  <Typography>Plastic Bags</Typography>
-                  {createCollectionRender('Plastic bags')}
-                </Paper>
+                <div>
+                  <Typography>Garden Waste</Typography>
+                  {createCollectionRender('Green waste')}
+                </div>
               </Grid>
               <Grid item xs={6}>
-                <Paper className={classes.paper}>
-                  <Typography>Expanded Polystyrene</Typography>
-                  {createCollectionRender('Plastics 6 EPS')}
-                </Paper>
+                <div>
+                  <Typography>Food Scraps</Typography>
+                  {createCollectionRender('Food scraps')}
+                </div>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
+
+        <Grid item xs={6}>
+          <Paper className={classes.paper}>
+            <Grid container className={classes.innerGrid}>
+              <Grid item xs={4}>
+                <div>
+                  <Typography>Plastics 4</Typography>
+                  {createCollectionRender('Plastics 4 LDPE')}
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div>
+                  <Typography>Plastics 6</Typography>
+                  {createCollectionRender('Plastics 6 PS')}
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div>
+                  <Typography>Plastics 7</Typography>
+                  {createCollectionRender('Plastics 7 Other')}
+                </div>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.paper}>
+            <Grid container className={classes.innerGrid}>
+              <Grid item xs={6}>
+                <div>
+                  <Typography>Plastic Bags</Typography>
+                  {createCollectionRender('Plastic bags')}
+                </div>
+              </Grid>
+              <Grid item xs={6}>
+                <div>
+                  <Typography>Expanded Polystyrene</Typography>
+                  {createCollectionRender('Plastics 6 EPS')}
+                </div>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+
+        {council['Notes'] && <Grid item xs={10}>
+          <Paper className={classes.paper}>
+            <Typography>{council['Notes']}</Typography>
+          </Paper>
+        </Grid>}
+
       </Grid>
     </div>
   );

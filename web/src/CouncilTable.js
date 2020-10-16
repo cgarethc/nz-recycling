@@ -1,12 +1,14 @@
 import React from 'react';
 
+import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+
 import HouseIcon from '@material-ui/icons/House';
 import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
-import Tooltip from '@material-ui/core/Tooltip';
 import CheckIcon from '@material-ui/icons/Check';
+import InfoIcon from '@material-ui/icons/Info';
 
 import MaterialTable from "material-table";
 import { forwardRef } from 'react';
@@ -50,7 +52,16 @@ export default function CouncilTable(props) {
 
   const councils = props.councils;
 
-  const councilRender = rowData => <Typography color="textPrimary"><a href={rowData['Recycling info']} target="_blank" rel="noopener noreferrer">{rowData['Council']}</a></Typography>;
+  const councilRender = (rowData) => {
+    return (
+      
+        <Typography color="textPrimary">
+          <a href={rowData['Recycling info']} target="_blank" rel="noopener noreferrer">{rowData['Council']}</a>
+          {rowData.Notes && <Tooltip title={rowData.Notes} aria-label="more info"><InfoIcon/></Tooltip>}
+        </Typography>
+      
+    );
+  }
 
   const createCollectionRender = (field) => {
     return rowData => {
@@ -89,7 +100,7 @@ export default function CouncilTable(props) {
   };
 
   const columnStyle = {
-    
+
   };
 
   const headerStyle = {
@@ -103,7 +114,7 @@ export default function CouncilTable(props) {
         field: "Council",
         render: councilRender,
         width: 300,
-        cellStyle: {fontSize: '8pt'}
+        cellStyle: { fontSize: '8pt' }
       },
       {
         title: 'Paper', field: 'Paper', render: createCollectionRender('Paper'),
